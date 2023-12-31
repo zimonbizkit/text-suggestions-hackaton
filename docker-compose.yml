@@ -1,0 +1,38 @@
+version: '3.8'
+services: 
+  solr:
+    image: solr:8.5.2
+    container_name: solr
+    hostname:  showntell-solr
+    ports:
+      - 8983:8983
+    environment:
+      - SOLR_HOST=solr
+
+  awsglue:
+    image: amazon/aws-glue-libs:glue_libs_3.0.0_image_01
+
+  notebooks:
+    build:
+      context: notebooks/.
+      dockerfile: Dockerfile
+    container_name: aips-data-science
+    ports:
+      - 7077:7077 # Spark Master
+      - 8082:8080 # Spark Master UI - 8082 less likely to conflict
+      - 8081:8081 # Spark Worker UI
+      - 4040:4040 # Spark UI
+      - 4041:4041 # Spark UI
+      - 8889:8889 # Jupyter Notebook UI
+      #- 2345:2345 # Search Webserver
+    depends_on:
+      - solr
+       #networks:
+       #- solr-data-science
+
+    environment:
+      SOLR_HOST: 'showntell-solr'
+    volumes:
+     - type: bind
+       source: "./notebooks/"
+       target: "/tmp/notebooks/"
