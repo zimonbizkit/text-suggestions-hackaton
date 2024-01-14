@@ -10,4 +10,75 @@
     <requestHandler name="/update" class="solr.UpdateRequestHandler"/>
     <requestHandler class="solr.FieldAnalysisRequestHandler" name="/analysis/field" startup="lazy"/>
     <requestHandler class="solr.DocumentAnalysisRequestHandler" name="/analysis/document" startup="lazy"/>
+
+    <searchComponent name="suggest" class="solr.SuggestComponent">
+        <lst name="suggester">
+            <str name="name">mySuggester</str>
+            <str name="lookupImpl">AnalyzingInfixLookupFactory</str>
+            <!-- Specify the field to use for suggestions -->
+            <str name="dictionaryImpl">DocumentDictionaryFactory</str>
+            <str name="field">name_suggest</str>
+            <!-- Additional parameters -->
+            <str name="suggestAnalyzerFieldType">text_suggest</str>
+            <str name="buildOnStartup">false</str>
+            <str name="buildOnCommit">false</str>
+            <!-- Blending parameters -->
+            <float name="blenderTolerance">0.1</float>
+            <str name="maxSurfaceFormsPerAnalyzedForm">5</str>
+            <str name="maxAnalyzingSuggestions">10</str>
+            <str name="highlight">false</str>
+        </lst>
+        <lst name="suggester">
+            <str name="name">infixSuggesterTextSuggest</str>
+            <str name="lookupImpl">AnalyzingInfixLookupFactory</str>
+            <str name="indexPath">infix_suggestions</str>
+            <str name="dictionaryImpl">DocumentDictionaryFactory</str>
+            <str name="field">name_suggest</str>
+            <str name="suggestAnalyzerFieldType">text_suggest</str>
+            <str name="buildOnStartup">false</str>
+            <str name="buildOnCommit">false</str>
+        </lst>
+        <lst name="suggester">
+            <str name="name">infixSuggesterTextSuggest</str>
+            <str name="lookupImpl">AnalyzingInfixLookupFactory</str>
+            <str name="indexPath">infix_suggestions</str>
+            <str name="dictionaryImpl">DocumentDictionaryFactory</str>
+            <str name="field">name</str>
+            <str name="suggestAnalyzerFieldType">string</str>
+            <str name="buildOnStartup">false</str>
+            <str name="buildOnCommit">false</str>
+        </lst>
+        <lst name="suggester">
+            <str name="name">fuzzySuggesterTextSuggest</str>
+            <str name="lookupImpl">FuzzyLookupFactory</str>
+            <str name="indexPath">infix_suggestions</str>
+            <str name="dictionaryImpl">DocumentDictionaryFactory</str>
+            <str name="field">name</str>
+            <str name="suggestAnalyzerFieldType">string</str>
+            <str name="buildOnStartup">false</str>
+            <str name="buildOnCommit">false</str>
+        </lst>
+        <lst name="suggester">
+            <str name="name">analyzingSuggesterTextSuggest</str>
+            <str name="lookupImpl">AnalyzingLookupFactory</str>
+            <str name="indexPath">infix_suggestions</str>
+            <str name="dictionaryImpl">DocumentDictionaryFactory</str>
+            <str name="field">name</str>
+            <str name="suggestAnalyzerFieldType">string</str>
+            <str name="buildOnStartup">false</str>
+            <str name="buildOnCommit">false</str>
+        </lst>
+    </searchComponent>
+
+    <requestHandler name="/suggest" class="solr.SearchHandler" startup="lazy">
+        <lst name="defaults">
+            <str name="suggest">true</str>
+            <str name="suggest.count">5</str>
+            <str name="suggest.dictionary">mySuggester</str>
+        </lst>
+        <arr name="components">
+            <str>suggest</str>
+        </arr>
+    </requestHandler>
+
 </config>

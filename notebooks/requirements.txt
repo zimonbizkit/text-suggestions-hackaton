@@ -1,3 +1,4 @@
+pyaxis==0.3.4
 adjusttext==0.8
 appnope==0.1.0
 bs4==0.0.1

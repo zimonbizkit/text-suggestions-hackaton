@@ -28,7 +28,7 @@ def batch_indexing(df, batch_size, solr_url, solr_core):
             print(f"Error indexing batch {i // batch_size}: {response.text}")
 
 # Parameters
-df = pd.read_csv('./../products_with_location.csv')
+df = pd.read_csv('../products_with_location.csv')
 solr_url = 'http://solr:8983/solr'  # Replace with your Solr URL
 solr_core = 'retrotech'  # Replace with your Solr core name
 batch_size = 10  # Number of records per batch

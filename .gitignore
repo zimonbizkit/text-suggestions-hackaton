@@ -1,1 +1,7 @@
 .idea/
+notebooks/notebooks/.ipynb_checkpoints/
+docker/solr/filestore/
+docker/solr/new_core/
+docker/solr/userfiles/
+docker/solr/*/data/
+notebooks/notebooks/*/data/

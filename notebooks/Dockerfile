@@ -23,7 +23,7 @@ WORKDIR /home/$NB_USER
 COPY requirements.txt ./
 ENV BLIS_ARCH="generic"
 
-RUN python -m pip --no-cache-dir install --upgrade pip && \
+RUN rm -rf /.cache/pip && python -m pip --no-cache-dir install --upgrade pip && \
   pip --no-cache-dir install -r requirements.txt
 
 RUN python -m spacy download en_core_web_sm
