@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema name="example" version="1.6">
+    <types>
+        <fieldType name="text" class="solr.TextField" />
+        <fieldType name="string" class="solr.StrField" />
+        <fieldType name="int" class="solr.IntField" />
+    </types>
+    <fields>
+        <field name="upc" type="int" indexed="true" stored="true" required="true" />
+        <field name="name" type="text" indexed="true" stored="false" required="false" omitNorms="true" />
+        <field name="manufacturer" type="text" indexed="true" stored="false" required="false" omitNorms="true" />
+        <field name="shortDescription" type="text" indexed="true" stored="false" required="false" omitNorms="true" />
+        <field name="longDescription" type="text" indexed="true" stored="false" required="false" omitNorms="true" />
+    </fields>
+</schema>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema name="example" version="1.6">
+    <types>
+        <fieldType name="text" class="solr.TextField" />
+        <fieldType name="string" class="solr.StrField" />
+        <fieldType name="int" class="solr.IntPointField" />
+        <fieldType name="_location" class="solr.LatLonPointSpatialField"/>
+        <fieldType class="solr.TextField" name="text_suggest" positionIncrementGap="100">
+          <analyzer>
+            <tokenizer class="solr.StandardTokenizerFactory"/>
+            <filter class="solr.LowerCaseFilterFactory"/>
+          </analyzer>
+        </fieldType>
+    </types>
+    <fields>
+        <field name="upc" type="int" indexed="true" stored="true" required="true" />
+        <field name="name" type="text" indexed="true" stored="true" required="false" omitNorms="true" />
+        <field name="manufacturer" type="text" indexed="true" stored="false" required="false" omitNorms="true" />
+        <field name="shortDescription" type="text" indexed="true" stored="false" required="false" omitNorms="true" />
+        <field name="longDescription" type="text" indexed="true" stored="false" required="false" omitNorms="true" />
+        <field name="location" type="_location" indexed="true" stored="true" required="true"/>
+        <field name="geohash" type="string" indexed="true" stored="true" required="true"/>
+        <copyField source="name" dest="name_suggest"/>
+        <field name="name_suggest" type="text_suggest" indexed="true" stored="false" required="false" omitNorms="true" />
+    </fields>
+</schema>
