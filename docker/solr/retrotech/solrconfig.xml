@@ -4,7 +4,6 @@
         <lst name="defaults">
             <str name="echoParams">explicit</str>
             <int name="rows">10</int>
-            <str name="df">FieldName</str>
         </lst>
     </requestHandler>
     <requestHandler name="/update" class="solr.UpdateRequestHandler"/>
@@ -20,7 +19,8 @@
             <str name="field">name_suggest</str>
             <!-- Additional parameters -->
             <str name="suggestAnalyzerFieldType">text_suggest</str>
-            <str name="buildOnStartup">false</str>
+            <str name="queryAnalyzerFieldType">text_suggest</str>
+            <str name="buildOnStartup">true</str>
             <str name="buildOnCommit">false</str>
             <!-- Blending parameters -->
             <float name="blenderTolerance">0.1</float>
@@ -35,46 +35,54 @@
             <str name="dictionaryImpl">DocumentDictionaryFactory</str>
             <str name="field">name_suggest</str>
             <str name="suggestAnalyzerFieldType">text_suggest</str>
-            <str name="buildOnStartup">false</str>
+            <str name="queryAnalyzerFieldType">text_suggest</str>
+            <str name="buildOnStartup">true</str>
             <str name="buildOnCommit">false</str>
+            <str name="highlight">false</str>
         </lst>
         <lst name="suggester">
             <str name="name">infixSuggesterTextSuggest</str>
             <str name="lookupImpl">AnalyzingInfixLookupFactory</str>
-            <str name="indexPath">infix_suggestions</str>
+            <str name="indexPath">analyzing_infix_suggestions</str>
             <str name="dictionaryImpl">DocumentDictionaryFactory</str>
             <str name="field">name</str>
-            <str name="suggestAnalyzerFieldType">string</str>
-            <str name="buildOnStartup">false</str>
+            <str name="suggestAnalyzerFieldType">text_suggest</str>
+            <str name="queryAnalyzerFieldType">text_suggest</str>
+            <str name="buildOnStartup">true</str>
             <str name="buildOnCommit">false</str>
+            <str name="highlight">false</str>
         </lst>
         <lst name="suggester">
             <str name="name">fuzzySuggesterTextSuggest</str>
             <str name="lookupImpl">FuzzyLookupFactory</str>
-            <str name="indexPath">infix_suggestions</str>
+            <str name="indexPath">fuzzy_suggestions</str>
             <str name="dictionaryImpl">DocumentDictionaryFactory</str>
-            <str name="field">name</str>
-            <str name="suggestAnalyzerFieldType">string</str>
-            <str name="buildOnStartup">false</str>
+            <str name="field">name_suggest</str>
+            <str name="suggestAnalyzerFieldType">text_suggest</str>
+            <str name="queryAnalyzerFieldType">text_suggest</str>
+            <str name="buildOnStartup">true</str>
             <str name="buildOnCommit">false</str>
+            <str name="highlight">false</str>
         </lst>
         <lst name="suggester">
             <str name="name">analyzingSuggesterTextSuggest</str>
             <str name="lookupImpl">AnalyzingLookupFactory</str>
-            <str name="indexPath">infix_suggestions</str>
+            <str name="indexPath">analyzing_lookup_suggestions</str>
             <str name="dictionaryImpl">DocumentDictionaryFactory</str>
-            <str name="field">name</str>
-            <str name="suggestAnalyzerFieldType">string</str>
-            <str name="buildOnStartup">false</str>
+            <str name="field">name_suggest</str>
+            <str name="suggestAnalyzerFieldType">text_suggest</str>
+            <str name="queryAnalyzerFieldType">text_suggest</str>
+            <str name="buildOnStartup">true</str>
             <str name="buildOnCommit">false</str>
+            <str name="highlight">false</str>
         </lst>
     </searchComponent>
 
     <requestHandler name="/suggest" class="solr.SearchHandler" startup="lazy">
         <lst name="defaults">
             <str name="suggest">true</str>
-            <str name="suggest.count">5</str>
-            <str name="suggest.dictionary">mySuggester</str>
+            <str name="suggest.count">25</str>
+            <str name="suggest.dictionary">infixSuggesterTextSuggest</str>
         </lst>
         <arr name="components">
             <str>suggest</str>

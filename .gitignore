@@ -5,3 +5,4 @@ docker/solr/new_core/
 docker/solr/userfiles/
 docker/solr/*/data/
 notebooks/notebooks/*/data/
+data/*

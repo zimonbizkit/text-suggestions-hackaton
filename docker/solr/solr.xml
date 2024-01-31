@@ -53,6 +53,10 @@
     <int name="socketTimeout">${socketTimeout:600000}</int>
     <int name="connTimeout">${connTimeout:60000}</int>
     <str name="shardsWhitelist">${solr.shardsWhitelist:}</str>
+    <int name="maximumPoolSize">${maximumPoolSize:20000}</int>
+    <int name="maxThreadIdleTime">${maxThreadIdleTime:5}</int>
+    <int name="maxConnectionsPerHost">${maxConnectionsPerHost:200}</int>
+    <int name="maxConnectionsPerHost">${maxConnectionsPerHost:200}</int>
   </shardHandlerFactory>
 
   <metrics enabled="${metricsEnabled:true}"/>

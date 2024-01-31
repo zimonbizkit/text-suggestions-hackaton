@@ -21,6 +21,6 @@
         <field name="location" type="_location" indexed="true" stored="true" required="true"/>
         <field name="geohash" type="string" indexed="true" stored="true" required="true"/>
         <copyField source="name" dest="name_suggest"/>
-        <field name="name_suggest" type="text_suggest" indexed="true" stored="false" required="false" omitNorms="true" />
+        <field name="name_suggest" type="text_suggest" indexed="true" stored="true" required="false" omitNorms="true" />
     </fields>
 </schema>

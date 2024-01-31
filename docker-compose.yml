@@ -14,10 +14,10 @@ services:
       - ./docker/solr:/var/solr/data
 
 
-  awsglue:
-    image: amazon/aws-glue-libs:glue_libs_3.0.0_image_01
-    container_name: awsglue
-    tty: true
+  #awsglue:
+  #  image: amazon/aws-glue-libs:glue_libs_3.0.0_image_01
+  #  container_name: awsglue
+  #  tty: true
 
   notebooks:
     build:

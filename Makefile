@@ -36,7 +36,7 @@ setup:
 .PHONY : jupyter
 jupyter:
 	docker-compose -f docker-compose.yml up -d
-	docker exec -it notebooks sh -c "jupyter notebook --notebook-dir=/tmp/notebooks/"
+	docker exec -it notebooks sh -c "jupyter notebook --notebook-dir=/tmp/notebooks/ --NotebookApp.iopub_data_rate_limit=4.0e10"
 
 ##	solr-bash:		runs bash on solr
 .PHONY : solr-bash
@@ -56,7 +56,7 @@ glue-bash:
 ##	data-clean:		cleans the datasets from your host
 .PHONY: data-clean
 data-clean:
-	rm -rf data/* && rm -rf/notebooks/data/*
+	rm -rf data/* && rm -rf /notebooks/data/*
 
 ##	build_suggestions_1:	builds example 1
 .PHONY : build_suggestions_1
