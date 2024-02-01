@@ -12,9 +12,9 @@ implementing text suggestions using Solr as a store for them. Some points:
 ## Examples
 
 1.  **[Location-based text suggestions](docs/example_1/README.md)** with latitude/longitude modelling and [Geohashes](https://en.wikipedia.org/wiki/Geohash) [⚙️Work in progress, mostly done]    
-2.  **"Relevance" based** iterations with supply/demand-based logic  [⚙️Work in progress, no ready example yet]
+2.  **"Relevance" based** iterations with supply/demand-based logic  
 3. **Using [Point-wise Mutual Information (PMI)](https://en.wikipedia.org/wiki/Pointwise_mutual_information)** index to
-generate next autocomplete token on text suggestions [⚙️Work in progress, no ready example yet]
+generate next autocomplete token on text suggestions [⚙️Work in progress, generation but no indexation]
 
 
 ---
