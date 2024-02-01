@@ -58,7 +58,7 @@ glue-bash:
 ##	data-clean:		cleans the datasets from your host
 .PHONY: data-clean
 data-clean:
-	rm -rf data/* && rm -rf /notebooks/data/*
+	rm -rf data/* && rm -rf /notebooks/data/* && rm -rf notebooks/notebooks/example_2/*.csv && rm -rf notebooks/notebooks/example_3/*.csv && rm -rf notebooks/notebooks/example_1/*.csv
 
 ##	build_suggestions_1:	builds example 1
 .PHONY : build_suggestions_1
