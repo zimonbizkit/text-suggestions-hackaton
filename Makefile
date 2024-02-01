@@ -31,12 +31,14 @@ setup:
 	docker-compose up -d
 	./scripts/download_dataset.sh
 	cp -r data/* notebooks/notebooks/data/
+	cp -r data/* notebooks/notebooks/example_2/
+	cp -r data/* notebooks/notebooks/example_3/
 
 ##	jupyter:		runs jupyter notebook
 .PHONY : jupyter
 jupyter:
 	docker-compose -f docker-compose.yml up -d
-	docker exec -it notebooks sh -c "jupyter notebook --notebook-dir=/tmp/notebooks/ --NotebookApp.iopub_data_rate_limit=4.0e10"
+	docker exec -it notebooks sh -c "jupyter notebook --NotebookApp.iopub_data_rate_limit=9e10 --NotebookApp.iopub_msg_rate_limit=9e10 --notebook-dir=/tmp/notebooks/"
 
 ##	solr-bash:		runs bash on solr
 .PHONY : solr-bash

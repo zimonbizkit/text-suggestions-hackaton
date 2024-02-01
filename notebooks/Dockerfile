@@ -39,6 +39,9 @@ ENV SPARK_OPTS="$SPARK_OPTS --driver-java-options=\"-DXlint:none -Dlog4j.logLeve
     PYSPARK_SUBMIT_ARGS="-c spark.driver.defaultJavaOptions=\"-DXlint=none -Dlog4j.logLevel=error -Dallow-access=java.nio.DirectByteBuffer\" -c spark.ui.showConsoleProgress=False --jars $SHADED_SOLR_JAR_PATH pyspark-shell" \
     PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-*-src.zip:%PYTHONPATH%
 
+RUN echo 'c.NotebookApp.iopub_data_rate_limit = 1000000' >> $HOME/.jupyter/jupyter_notebook_config.py
+RUN echo 'c.NotebookApp.iopub_msg_rate_limit = 1000000' >> $HOME/.jupyter/jupyter_notebook_config.py
+
 WORKDIR notebooks
 # If you want to edit the notebooks and have
 # your changes persist, uncomment the line below
